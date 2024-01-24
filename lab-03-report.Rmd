@@ -1,0 +1,239 @@
+---
+title: 'EES 3310/5310 Lab #3'
+subtitle: "Exercises with the MODTRAN Model"
+author: "put your name here"
+date: 'Lab: Wed. Jan. 24. Due: Wed. Jan. 31'
+fontsize: "12pt"
+output:
+  pdf_document: 
+    toc: yes
+    includes:
+      in_header: ees3310.sty
+  word_document:
+    toc: true
+  github_document:
+    toc: true
+  html_document: 
+    toc: true
+---
+```{r setup, include=FALSE}
+knitr::knit_hooks$set(inline = function(x) { knitr:::format_sci(x, 'md')})
+knitr::opts_chunk$set(echo = TRUE)
+
+if (knitr::is_latex_output()) {
+  message("Setting PDF plot hook.")
+  new_plot_hook <- function(x, options)
+    paste("\n", knitr::hook_plot_tex(x, options), "\n")
+  
+  knitr::knit_hooks$set(plot = new_plot_hook)
+} else {
+  message("Not using PDF output.")
+}
+
+
+options(dplyr.summarise.inform = FALSE)
+
+# This section loads necessary R libraries and sources scripts that define 
+# useful functions format_md.
+# 
+data_dir = "_data"
+script_dir = "_scripts"
+
+library(pacman)
+p_load(tidyverse, knitr)
+
+theme_set(theme_bw(base_size = 15))
+
+source(file.path(script_dir, 'utils.R'), chdir = T)
+source(file.path(script_dir, 'format_md.R'), chdir = T)
+source(file.path(script_dir, 'modtran.R'), chdir = T)
+
+```
+
+Fill in R code for the exercises 
+(I have put the comment `# TODO` in all of the code chunks where you need to 
+do this)
+and then fill in the answers where I have marked **Answer:**. 
+Be sure to write explanations of your answer and don't just put numbers with 
+no text.
+
+## Exercise 4.1: Methane
+
+Methane has a current concentration of 1.7 ppm in the atmosphere and
+is doubling at a faster rate than CO~2~.
+
+a) **Would an additional 10 ppm of methane in the atmosphere have a larger or 
+   smaller impact on the outgoing IR flux than an additional 10 ppm of CO~2~ 
+   at current concentrations?**
+
+   **Hint:**
+   See the suggestion in the `lab-03-instructions` document.
+
+```{r ex_4_1_a, include=TRUE, message=FALSE}
+# TODO
+# Put your R code here
+```
+
+**Answer:** _Put your answer here._ Be sure to explain your reasoning and 
+show data, plots, etc. to explain how you came up with your answer.
+
+b) **Where in the spectrum does methane absorb? What concentration does it take 
+   to begin to saturate the absorption in this band? Explain what you are looking 
+   at to judge when the gas is saturated.**
+
+   **Hints:**  
+   See the hints in the `lab-03-instructions` document.
+
+```{r ex_4_1_b, include=TRUE, message=FALSE}
+# TODO
+# Put your R code here
+```
+
+**Answer:** _Put your answer here._ Be sure to show your work and
+include any data, plots, etc. that you need in order to explain how
+you came up with your answer.
+
+  
+c) **Would a doubling of methane have as great an impact on the heat balance as a 
+   doubling of CO~2~?**
+
+   **Hint:**
+   See the suggestion in the `lab-03-instructions` document.
+
+```{r ex_4_1_c, include=TRUE, message=FALSE}
+# TODO
+# Put your R code here
+```
+
+**Answer:** _Put your answer here._ Be sure to show your work and
+include any data, plots, etc. that you need in order to explain how
+you came up with your answer.
+
+
+d) **What is the "equivalent CO~2~" of doubling atmospheric methane? That is to 
+   say, how many ppm of CO~2~ would lead to the same change in outgoing IR 
+   radiation energy flux as doubling methane? What is the ratio of ppm CO~2~ 
+   change to ppm methane change?**
+
+```{r ex_4_1_d, include=TRUE, message=FALSE}
+# TODO
+# Put your R code here
+```
+
+**Answer:** _Put your answer here._ Be sure to show your work and
+include any data, plots, etc. that you need in order to explain how
+you came up with your answer.
+
+
+## Exercise 4.2: CO~2~ (Graduate students only)
+
+a) **Is the direct effect of increasing CO~2~ on the energy output at the top of
+   the atmosphere larger in high latitudes or in the tropics?**
+
+   **Hint:**
+   See the hint in the `lab-03-instructions` document.
+
+
+```{r ex_4_2_a, include=TRUE, message=FALSE}
+# TODO
+# Put your R code here
+```
+
+**Answer:** _Put your answer here._ Be sure to show your work and
+include any data, plots, etc. that you need in order to explain how
+you came up with your answer.
+
+
+b) **Set pCO~2~ to an absurdly high value of 10,000 ppm. You will see a spike
+   in the CO~2~ absorption band. What temperature is this light coming from? 
+   Where in the atmosphere do you think this comes from?**
+
+   **Now turn on clouds and run the model again. Explain what you see.
+   Why are night-time temperatures warmer when there are clouds?**
+
+   **Hint:**
+   See the hint in the `lab-03-instructions` document and
+   for the second part of this exercise, try using "altostratus" clouds.
+
+```{r ex_4_2_b, include=TRUE, message=FALSE}
+# TODO
+# Put your R code here
+```
+
+**Answer:** _Put your answer here._ Be sure to show your work and
+include any data, plots, etc. that you need in order to explain how
+you came up with your answer.
+
+
+## Exercise 4.3: Water vapor
+
+Our theory of climate presumes that an increase in the temperature at ground
+level will lead to an increase in the outgoing IR energy flux at the top of the
+atmosphere.
+
+
+a) **How much extra outgoing IR would you get by raising the temperature of the 
+   ground by 5&deg;C? What effect does the ground temperature have on the 
+   shape of the outgoing IR spectrum and why?**
+   
+   **Hint:**
+   See the hint in the `lab-03-instructions` document.
+
+```{r ex_4_3_a, include=TRUE, message=FALSE}
+# TODO
+# Put your R code here
+```
+
+**Answer:** _Put your answer here._ Be sure to show your work and
+include any data, plots, etc. that you need in order to explain how
+you came up with your answer.
+
+b) **More water can evaporate into warm air than into cool air. Change the
+   model settings to hold the water vapor at constant relative humidity 
+   rather than constant vapor pressure (the default), calculate the change
+   in outgoing IR energy flux for a 5&deg;C temperature increase.
+   Is it higher or lower? Does water vapor make the Earth more sensitive to
+   CO~2~ increases or less sensitive?**
+   
+   **Note:** By default, the MODTRAM model holds water vapor pressure constant,
+   but you can set it to hold relative humidity constant instead with the
+   option `h2o_fixed = "relative humidity"`, like this:
+   `run_modtran(file_name, delta_t = 5, h2o_fixed = "relative humidity")`.
+
+```{r ex_4_3_b, include=TRUE, message=FALSE}
+# TODO
+# Put your R code here
+```
+
+**Answer:** _Put your answer here._ Be sure to show your work and
+include any data, plots, etc. that you need in order to explain how
+you came up with your answer.
+
+c) **Now see this effect in another way.**
+
+   * **Starting from the default base case, record the total outgoing 
+     IR flux.**
+
+   * **Now double CO~2~. The temperature in the model stays the
+     same (that's how the model is written), but the outgoing IR flux
+     goes down.**
+
+   * **Using constant water vapor pressure, adjust the temperature offset
+     until you get the original IR flux back again. Record the change in
+     temperature.**
+    
+   * **Now repeat the exercise, but holding the relative humidity fixed
+     instead of the water vapor pressure.**
+    
+   * **The ratio of the warming when you hold relative humidity fixed
+     to the warming when you hold water vapor pressure fixed is the 
+     feedback factor for water vapor. What is it?**
+
+```{r ex_4_3_c, include=TRUE, message=FALSE}
+# TODO
+# Put your R code here
+```
+
+**Answer:** _Put your answer here._ Be sure to show your work and
+include any data, plots, etc. that you need in order to explain how
+you came up with your answer.
