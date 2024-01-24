@@ -1,16 +1,16 @@
 ---
 title: 'EES 3310/5310 Lab #3'
 subtitle: "Exercises with the MODTRAN Model"
-author: "put your name here"
+author: "Thomas Ulrich"
 date: 'Lab: Wed. Jan. 24. Due: Wed. Jan. 31'
 fontsize: "12pt"
 output:
+  word_document:
+    toc: true
   pdf_document: 
     toc: yes
     includes:
       in_header: ees3310.sty
-  word_document:
-    toc: true
   github_document:
     toc: true
   html_document: 
@@ -70,12 +70,27 @@ a) **Would an additional 10 ppm of methane in the atmosphere have a larger or
    See the suggestion in the `lab-03-instructions` document.
 
 ```{r ex_4_1_a, include=TRUE, message=FALSE}
-# TODO
-# Put your R code here
+
+#current concentrations
+currentConditions = run_modtran(filename = "currentconditions_modtran")
+
+plot_modtran(modtran_data = currentConditions, descr = "Current Conditons")
+
+#I_out with current conditions = 298.67
+
+mod_q1ch4 = run_modtran(file.path(data_dir, "modtran_Q1_ch4.txt"), ch4_ppm = 11.7)
+# additional 10 ppm of Methane
+
+mod_q1co2 = run_modtran(file.path(data_dir, "modtran_Q1_co2.txt"), co2_ppm = 410)
+#additional 10 ppm of CO2
+
+plot_modtran(modtran_data = mod_q1ch4, descr = "Methane = 11.7 ppm")
+
+plot_modtran(modtran_data = mod_q1co2, descr = "CO2 = 410 ppm")
 ```
 
-**Answer:** _Put your answer here._ Be sure to explain your reasoning and 
-show data, plots, etc. to explain how you came up with your answer.
+**Answer:** Adding 10 ppm of methane to the atmosphere would have a larger impact on the outgoing infrared radiation than an increase of 10 ppm of CO~2~. 
+When plotted, the 10 ppm increase in methane would decrease output of Infrared radiation by a value of 3.11, while 10 ppm CO~2~ increase only decreases it by 0.12.
 
 b) **Where in the spectrum does methane absorb? What concentration does it take 
    to begin to saturate the absorption in this band? Explain what you are looking 
